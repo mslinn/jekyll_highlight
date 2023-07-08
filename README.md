@@ -1,12 +1,4 @@
-# JekyllHighlight
-
-[![Gem Version](http://img.shields.io/gem/v/jekyll_highlight.svg)][gem]
-[![Dependency Status](http://img.shields.io/gemnasium/mslinn/jekyll_highlight.svg)][gemnasium]
-[![Coverage Status](http://img.shields.io/coveralls/mslinn/jekyll_highlight.svg)][coveralls]
-
-[gem]: https://rubygems.org/gems/jekyll_highlight
-[gemnasium]: https://gemnasium.com/mslinn/jekyll_highlight
-[coveralls]: https://coveralls.io/r/mslinn/jekyll_highlight
+# `JekyllHighlight` [![Gem Version](https://badge.fury.io/rb/JekyllHighlight.svg)](https://badge.fury.io/rb/JekyllHighlight)
 
 Description of JekyllHighlight
 
