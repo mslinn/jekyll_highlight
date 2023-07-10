@@ -33,13 +33,20 @@ module JekyllHighlight
     def render_impl
       @text = @helper.parameter_specified? 'text'
       if @text.to_s.strip.empty?
-        @logger.error "Highlight error: no text provided on line #{line_number} (after front matter)"
-        return "<span style='color: white; background: red; padding: 2px;'>Highlight error: no text provided on line #{line_number} (after front matter)</span>"
+        msg = "Highlight error: no text provided on line #{line_number} (after front matter)"
+        @logger.error msg
+        return colorize(msg, 'white', 'red')
       end
 
       @fg_color = @helper.parameter_specified?('fg_color') || 'black'  # Parameter fg_color defaults to black
       @bg_color = @helper.parameter_specified?('bg_color') || 'yellow' # Parameter bg_color defaults to yellow
-      "<span style='color: #{@fg_color}; background: #{@bg_color}; padding: 2px;'>#{@text}</span>"
+      colorize @text, @fg_color, @bg_color
+    end
+
+    private
+
+    def colorize(text, fg_color, bg_color)
+      "<span style='color: #{fg_color}; background: #{bg_color}; padding: 2px;'>#{text}</span>"
     end
 
     JekyllPluginHelper.register(self, PLUGIN_NAME)
