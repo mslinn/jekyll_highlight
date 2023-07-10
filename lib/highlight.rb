@@ -6,8 +6,10 @@ require_relative 'jekyll_highlight/version.rb'
 # See https://www.mslinn.com/jekyll/10200-jekyll-plugin-background.html
 # See https://www.mslinn.com/jekyll/10400-jekyll-plugin-template-collection.html
 #
-# @example Heading for this example
-#   {% highlight param1='value1' %}
+# @example Sample Usages
+#   {% highlight text="highlight me" %}
+#   {% highlight bg_color='yellow' text="highlight me" %}
+#   {% highlight fg_color='green' bg_color='yellow' text="highlight me" %}
 #
 # The Jekyll log level defaults to :info, which means all the Jekyll.logger statements below will not generate output.
 # You can control the log level when you start Jekyll.
@@ -29,15 +31,15 @@ module JekyllHighlight
     # @param tokens [Liquid::ParseContext] tokenized command line
     # @return [void]
     def render_impl
-      @color = @helper.parameter_specified? 'color' # Obtain the value of parameter color
-      @bg_color = @helper.parameter_specified? 'bg_color' # Obtain the value of parameter bg_color
-      <<~END_OUTPUT
-        <pre class="example">
-          @color='#{@color}'
-          @bg_color='#{@bg_color}'
-          Remaining markup: '#{@helper.remaining_markup}'.
-        </pre>
-      END_OUTPUT
+      @text = @helper.parameter_specified? 'text'
+      if @text.to_s.strip.empty?
+        @logger.error "Highlight error: no text provided on line #{line_number}"
+        return "<span style='color: white; bg_color: red'>Highlight error: no text provided on line #{line_number}</span>"
+      end
+
+      @fg_color = @helper.parameter_specified?('fg_color') || 'black'  # Parameter fg_color defaults to black
+      @bg_color = @helper.parameter_specified?('bg_color') || 'yellow' # Parameter bg_color defaults to yellow
+      "<span style='color: #{@fg_color}; bg_color: #{@bg_color}'>#{@text}</span>"
     end
 
     JekyllPluginHelper.register(self, PLUGIN_NAME)
