@@ -2,8 +2,12 @@
 
 Demo Jekyll tag plugin that shows how to customize a generated Jekyll tag gem.
 
+This plugin would be better implemented as a filter, not a tag.
+
 The original generated output of the [nugem](https://www.mslinn.com/ruby/6700-thor.html) command is provided
 as the `original` git branch of this project.
+The `nugem` program is still in the early stages of development,
+so the `nugem` output has been improved since this project was generated.
 
 
 ## Installation
@@ -23,9 +27,11 @@ $ bundle
 ```
 
 
-## Usage
+## Sample Usage
 
-Describe how to use this gem
+{% highlight text="highlighted text" %}
+{% highlight text="highlighted text" fg_color="red" %}
+{% highlight text="highlighted text" fg_color="red" bg_color="grey" %}
 
 
 ## Development
