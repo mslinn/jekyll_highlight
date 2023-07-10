@@ -29,9 +29,11 @@ $ bundle
 
 ## Sample Usage
 
+```html
 {% highlight text="highlighted text" %}
 {% highlight text="highlighted text" fg_color="red" %}
 {% highlight text="highlighted text" fg_color="red" bg_color="grey" %}
+```
 
 
 ## Development
